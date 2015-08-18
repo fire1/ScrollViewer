@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scroll Viewer</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/flatly/bootstrap.min.css" rel="stylesheet"
+          integrity="sha256-sHwgyDk4CGNYom267UJX364ewnY4Bh55d53pxP5WDug= sha512-mkkeSf+MM3dyMWg3k9hcAttl7IVHe2BA1o/5xKLl4kBaP0bih7Mzz/DBy4y6cNZCHtE2tPgYBYH/KtEjOQYKxA=="
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<style>
+    .revision-fade{
+        background: #f0f0f0;
+    }
+</style>
+</head>
+
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">ScrollViewer</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="themes">
+                        <li><a href="../default/">Default</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="../help/">Help</a>
+                </li>
+                <li>
+                    <a href="http://news.bootswatch.com">Blog</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Flatly <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="download">
+                        <li><a href="http://jsfiddle.net/bootswatch/jmg3gykg/">Open Sandbox</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 60px">
+    <div class="row">
+
+        <div class="col-sm-12 panel">
+
+            <form method="post" enctype="multipart/form-data" name="new-revision" id="newRevisionForm" aria-expanded="false" class="collapse panel-warning ">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend class=" " style="padding:  15px">
+                        <i class="fa fa-cubes" style="margin-right: 5px"></i> New Revision
+                    </legend>
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <input id="title" name="title" placeholder="Revision Title" class="form-control input-md" tabindex="1" maxlength="180" required="" value="" type="text">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <!-- Multiple Checkboxes (inline) -->
+                                    <div class="form-group pull-left">
+                                        <div class="col-md-12">
+                                            <label class="checkbox-inline text-info lead" for="sendMails">
+                                                <input name="mails" id="sendMails" value="1" tabindex="5" type="checkbox">
+                                                <i class="fa fa-envelope"></i>
+                                            </label>
+                                            <label class="checkbox-inline text-warning lead" for="checkboxes-1">
+                                                <input name="topper" data-toggle="toggle" id="checkboxes-1" value="1" tabindex="6" type="checkbox">
+                                                <i class="fa fa-thumb-tack "></i>
+
+                                            </label>
+                                            <label class="checkbox-inline text-danger lead" for="important">
+                                                <input name="important" data-toggle="toggle" id="important" value="1" tabindex="7" onclick="document.getElementById('sendMails').checked = this.checked;" type="checkbox">
+                                                <i class="fa fa-exclamation-circle "></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-success" tabindex="8" name="set-revision">
+                                            <i class="fa fa-send" style="margin-right: 5px"></i>
+                                            Send Revision
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <script type="text/javascript" src="/js/jquery/jquery-te-1.4.0.min.js"></script>
+                                        <script>
+                                            $(document).ready(function () {
+                                                $('#revisionContent').jqte(
+                                                        {
+                                                            fsize: false,
+                                                            formats: false,
+                                                            link: false,
+                                                            color: false,
+                                                            source: false
+                                                        }
+                                                );
+                                            });
+                                        </script>
+
+                                        <div class="jqte"><div style="-moz-user-select: none;" class="jqte_toolbar unselectable" role="toolbar" unselectable="on"><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_1 unselectable" role="button" data-tool="0" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_4 unselectable" role="button" data-tool="3" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_5 unselectable" role="button" data-tool="4" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_6 unselectable" role="button" data-tool="5" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_7 unselectable" role="button" data-tool="6" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_8 unselectable" role="button" data-tool="7" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_9 unselectable" role="button" data-tool="8" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_10 unselectable" role="button" data-tool="9" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_11 unselectable" role="button" data-tool="10" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_12 unselectable" role="button" data-tool="11" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_13 unselectable" role="button" data-tool="12" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_14 unselectable" role="button" data-tool="13" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_15 unselectable" role="button" data-tool="14" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_16 unselectable" role="button" data-tool="15" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_18 unselectable" role="button" data-tool="17" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_19 unselectable" role="button" data-tool="18" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div><div style="-moz-user-select: none;" class="jqte_tool jqte_tool_20 unselectable" role="button" data-tool="19" unselectable="on"><a style="-moz-user-select: none;" class="jqte_tool_icon unselectable" unselectable="on"></a></div></div><div class="jqte_linkform" style="display:none" role="dialog"><div style="-moz-user-select: none;" class="jqte_linktypeselect unselectable" unselectable="on"><div style="-moz-user-select: none;" class="jqte_linktypeview unselectable" unselectable="on"><div style="-moz-user-select: none;" class="jqte_linktypearrow unselectable" unselectable="on"></div><div class="jqte_linktypetext">Web Address</div></div><div style="-moz-user-select: none;" class="jqte_linktypes unselectable" role="menu" unselectable="on"><a class="unselectable" style="-moz-user-select: none;" jqte-linktype="0" unselectable="on">Web Address</a><a class="unselectable" style="-moz-user-select: none;" jqte-linktype="1" unselectable="on">E-mail Address</a><a class="unselectable" style="-moz-user-select: none;" jqte-linktype="2" unselectable="on">Picture URL</a></div></div><input class="jqte_linkinput" value="" type="text/css"><div style="-moz-user-select: none;" class="jqte_linkbutton unselectable" unselectable="on">OK</div> <div style="height:1px;float:none;clear:both"></div></div><div class="jqte_editor" contenteditable="true"></div><div class="jqte_source jqte_hiddenField"><textarea data-origin="textarea" class="form-control" placeholder="Description ...." name="content" tabindex="2" id="revisionContent" style="max-width: 100%!important;" required="required"></textarea></div></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="panel-default panel">
+                                        <!-- File Button -->
+                                        <div class="panel-body" style="padding:22px;padding-left: 0">
+                                            <div class="col-sm-10 text-center">
+                                                <input id="filebutton" name="JobsRev[]" class="input-file uploadButton" multiple="" data-uploadname="JobsRev" tabindex="3" data-uploadid="JobsRev" type="file">
+                                            </div>
+                                            <div class="col-sm-2 pull-right">
+                                                <a href="javascript:void(0);" class="btn btn-default " id="revisionFolderOpener" data-toggle="modal" data-target="#RevisionFolder">
+                                                    <i class="glyphicon glyphicon-large glyphicon-folder-open" data-toggle="tooltip" data-placement="top" title="Files for current revision."></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+                <!-- Modal -->
+                <div class="modal fade " id="RevisionFolder" tabindex="-1" role="dialog" aria-labelledby="RevisionFolder">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title" id="RevisionModalLabel">Revision Folder</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="uploadContainerJobsRev"> </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input name="id" value="" type="hidden">
+            </form>
+        </div>
+
+        <!--
+This template is looped by jobsModel
+-->
+        <div class="row revision-fade " id="navigateToRevision-2">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #ff0000">
+                    <div class="media-left  text-center image-row">
+                        <a data-lightbox="1842515611" href="/getimg/jobs/revision/1842515611/im-143953600355cd93831b4b6.jpg"><img src="/getimg/jobs/revision/1842515611/th-143953600355cd93831b4b6.jpg" alt=""></a>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-2" aria-controls="revisionText-2" class="">
+                                This is test revision
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:2" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n This is test revision  !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:2">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-2" aria-controls="sawUser-2">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>14</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-13 16:51:03</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:2-->
+                        <div class="collapse" id="revisionText-2">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+                                <a data-lightbox="1842515611" href="/getimg/jobs/revision/1842515611/im-143953599755cd937ddbdd3.jpg"><img src="/getimg/jobs/revision/1842515611/th-143953599755cd937ddbdd3.jpg" alt=""></a><a data-lightbox="1842515611" href="/getimg/jobs/revision/1842515611/im-143953600055cd938074c68.jpg"><img src="/getimg/jobs/revision/1842515611/th-143953600055cd938074c68.jpg" alt=""></a>
+                            </div>
+                            Some text goes here<br><p><br></p><p>send emails</p>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-2" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-8">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-8" aria-controls="revisionText-8" class="">
+                                test revision 1
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:8" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n test revision 1 !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:8">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-8" aria-controls="sawUser-8">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>13</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 14:40:13</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:8-->
+                        <div class="collapse" id="revisionText-8">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            this is only for scrolling<br>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-8" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-9">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-9" aria-controls="revisionText-9" class="">
+                                Second revision
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:9" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n Second revision !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:9">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-9" aria-controls="sawUser-9">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>12</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 14:40:31</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:9-->
+                        <div class="collapse" id="revisionText-9">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            this is second revision <br>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-9" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-10">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-10" aria-controls="revisionText-10" class="">
+                                checkj
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:10" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n checkj  !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:10">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-10" aria-controls="sawUser-10">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>11</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 14:40:42</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:10-->
+                        <div class="collapse" id="revisionText-10">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            asdasdasdadsadadsadadadsasdasd
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-10" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-11">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-11" aria-controls="revisionText-11" class="">
+                                Proin sed consequat felis, vel aliquam tellus.
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:11" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n Proin sed consequat felis, vel aliquam tellus. !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:11">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-11" aria-controls="sawUser-11">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>10</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 14:41:26</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:11-->
+                        <div class="collapse" id="revisionText-11">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            &nbsp;Sed venenatis dapibus vestibulum. Sed euismod dignissim leo, ut viverra felis fermentum non. Donec placerat velit viverra ipsum lobortis consequat. Aenean vulputate orci nec est rhoncus egestas. Etiam ut varius dui, eu accumsan ipsum. Etiam et quam nec nisl hendrerit fringilla aliquam commodo erat. Morbi rutrum erat ullamcorper urna sagittis, sed faucibus purus bibendum. Donec efficitur volutpat nisi, nec molestie risus varius eu. Suspendisse semper condimentum ultricies. Ut mattis hendrerit ex, eget volutpat nisl dictum at. Vestibulum at finibus turpis, at convallis augue. Nulla molestie condimentum nisl. Sed in tempus felis, quis vehicula ex. Vestibulum finibus ultrices magna sit amet sagittis.
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-11" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-12">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-12" aria-controls="revisionText-12" class="">
+                                Duis laoreet commodo consectetur.
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:12" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n Duis laoreet commodo consectetur.  !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:12">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-12" aria-controls="sawUser-12">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>9</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 14:41:53</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:12-->
+                        <div class="collapse" id="revisionText-12">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            Morbi molestie tristique erat, at porta ipsum pharetra ac. Morbi congue velit ex, vitae rhoncus odio imperdiet eget. Nunc accumsan pharetra eleifend. In hac habitasse platea dictumst. Aliquam arcu est, ullamcorper vel tellus a, porttitor tristique dolor. Integer sapien neque, rutrum id dignissim non, tincidunt vel lacus. Maecenas velit nibh, hendrerit a cursus vel, tincidunt eu ligula. Maecenas condimentum tellus ac dolor tempor elementum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent in sollicitudin metus, venenatis semper tortor.
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-12" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-13">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-13" aria-controls="revisionText-13" class="">
+                                Morbi interdum gravida nulla
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:13" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n Morbi interdum gravida nulla !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:13">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-13" aria-controls="sawUser-13">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>8</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 14:42:16</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:13-->
+                        <div class="collapse" id="revisionText-13">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            &nbsp;id ullamcorper ex congue eget. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras eget fringilla augue. Pellentesque ultricies erat sit amet dignissim eleifend. Aliquam euismod mauris id tellus congue pulvinar. Donec sit amet rutrum quam, ac pellentesque orci. Cras laoreet mauris ut consectetur volutpat.
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-13" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-14">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #ff0000">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-14" aria-controls="revisionText-14" class="">
+                                test final 1 on upladte mailer
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:14" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n test final 1 on upladte mailer !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:14">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-14" aria-controls="sawUser-14">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>7</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 15:00:03</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:14-->
+                        <div class="collapse" id="revisionText-14">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            revision scrolll <br>mailer on update<br><br><b>test 2</b><br><br>warning <br>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-14" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-15">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+                        <a data-lightbox="1842515611" href="/getimg/jobs/revision/1842515611/im-143981911355d1e569f3d38.jpg"><img src="/getimg/jobs/revision/1842515611/th-143981911355d1e569f3d38.jpg" alt=""></a>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-15" aria-controls="revisionText-15" class="">
+                                test final 2
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:15" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n test final 2 !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:15">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-15" aria-controls="sawUser-15">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>6</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 15:00:18</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:15-->
+                        <div class="collapse" id="revisionText-15">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            scrollling <br>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-15" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-16">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-16" aria-controls="revisionText-16" class="">
+                                test final 3
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:16" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n test final 3 !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:16">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-16" aria-controls="sawUser-16">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>5</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 15:00:33</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:16-->
+                        <div class="collapse" id="revisionText-16">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            scrolling final<br>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-16" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-17">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-17" aria-controls="revisionText-17" class="">
+                                Revision mailed
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:17" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n Revision mailed !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:17">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-17" aria-controls="sawUser-17">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>4</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 15:02:25</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:17-->
+                        <div class="collapse" id="revisionText-17">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            this is mailed revision<br>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-17" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-18">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+                        <a data-lightbox="1842515611" href="/getimg/jobs/revision/1842515611/im-143981922355d1e5d72d9d1.jpg"><img src="/getimg/jobs/revision/1842515611/th-143981922355d1e5d72d9d1.jpg" alt=""></a>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-18" aria-controls="revisionText-18" class="">
+                                new revision mailer
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:18" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n new revision mailer !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:18">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-18" aria-controls="sawUser-18">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>3</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 15:18:22</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:18-->
+                        <div class="collapse" id="revisionText-18">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+                                <a data-lightbox="1842515611" href="/getimg/jobs/revision/1842515611/im-143981922055d1e5d48bda2.jpg"><img src="/getimg/jobs/revision/1842515611/th-143981922055d1e5d48bda2.jpg" alt=""></a>
+                            </div>
+                            this is new revision mailer<br>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-18" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-19">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-19" aria-controls="revisionText-19" class="">
+                                this is mailer revision
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:19" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n this is mailer revision !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:19">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-19" aria-controls="sawUser-19">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>2</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 15:18:51</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:19-->
+                        <div class="collapse" id="revisionText-19">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            this is mailer test revision<br>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-19" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!--
+        This template is looped by jobsModel
+        -->
+        <div class="row revision-fade " id="navigateToRevision-20">
+            <div class="col-sm-12 ">
+                <div class="media panel" style="padding: 10px;border-left:solid 5px #5BC0DE">
+                    <div class="media-left  text-center image-row">
+
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#revisionText-20" aria-controls="revisionText-20" class="">
+                                revision mailer insert test
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            </a>
+
+
+
+                            <!-- TODO Не работят правилно!  class="showAlert" -->
+                            <a href="/jobs/view:3/erase:20" onclick="if (! confirm('Do you want to erase Briefing Revision:\n\n revision mailer insert test  !')) { return false; }">
+                                <i class="small fa fa-trash pull-right"></i>
+                            </a>
+
+                            <a href="/jobs/view:3/edit:20">
+                                <i class="small fa fa-edit pull-right"></i>
+                            </a>
+
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#sawUser-20" aria-controls="sawUser-20">
+                                <i class="small fa fa-eye pull-right"></i>
+                            </a>
+
+                        </h3>
+                        <h5>
+                            <i class="fa fa-cubes" style="margin-right: 5px"></i>
+                            <span class="text-muted">Revision:</span> <strong>1</strong>
+                            <span class="text-muted">Date:</span> <strong>2015-08-17 15:20:28</strong>
+                        </h5>
+
+                        <!--/jobs/view:3/see:20-->
+                        <div class="collapse" id="revisionText-20">
+                            <div class="pull-left " style=" padding:4px; border: solid 1px #666\9; margin-right: 10px; max-width: 266px; width: auto">
+
+                            </div>
+                            this is mailer on insert <br>
+                        </div>
+                    </div>
+                    <div class="panel-footer row collapse" id="sawUser-20" style="margin-bottom: -10px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
